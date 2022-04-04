@@ -8,10 +8,10 @@ NOTE:
 	Click + Long Click = do n clicks then do long click (so Double Click + Long Click would be click twice then do a long click)
 
 Standard Controls While Blade is OFF
-	Turn On / Ignite Saber* = Twist On
-	Turn On / Ignite Saber (Muted) = Hold PWR + Twist
-	//Toggle Gesture Sleep* = Hold PWR + Twist
-	Start / Stop Tracks = Triple Click PWR (pointing straight up)
+	[*] Turn On / Ignite Saber* = Twist On
+	[*] Turn On / Ignite Saber (Muted) = Hold PWR + Twist
+	[*] //Toggle Gesture Sleep* = Hold PWR + Twist
+	[*] Start / Stop Tracks = Triple Click PWR (pointing straight up)
 	Track Player* = Triple Click PWR (parallel or down)
 		*if only default track exists in current preset, track will "Loop"
 		Turn Right (Stepped (IDK what that means I just want 1 then 2 then 3)) = Next Track
@@ -33,7 +33,7 @@ Standard Controls While Blade is OFF
 		Turn Right (Stepped) = Increase Volume (to max)
 		Turn Left (Stepped) = Decrease Volume (to min)
 		Click PWR = Confirm and Exit
-	Battery Level (IDK what this does but if it says or shows my battery % then I want if not i dont need it) = Quadruple (Four) Click
+	[*] Battery Level (IDK what this does but if it says or shows my battery % then I want if not i dont need it) = Quadruple (Four) Click
 	Change Font
 		Next Font = Triple Click + Long Click PWR (parallel or up)
 		Previous Font = Triple Click + Long Click PWR (down)

@@ -1,4 +1,28 @@
-// Change 2
+/*------------------------------------------
+  ____  _____    _    ____    __  __ _____ 
+ |  _ \| ____|  / \  |  _ \  |  \/  | ____|
+ | |_) |  _|   / _ \ | | | | | |\/| |  _|  
+ |  _ <| |___ / ___ \| |_| | | |  | | |___ 
+ |_| \_\_____/_/   \_\____/  |_|  |_|_____|
+
+ *		CHANGES MADE:
+ *	- [*] Turn On / Ignite Saber* = Twist On
+ *	- [*] Turn On / Ignite Saber (Muted) = Hold PWR + Twist
+ * 	- [*] Start / Stop Tracks = Triple Click PWR (pointing straight up)
+ * 	- [*] Battery Level = Quadruple (Four) Click
+ *		
+ *		BATTERY LEVEL:
+ *	- Will say the battery percentage, but make sure you define
+ * 			   #define FETT263_SAY_BATTERY_PERCENT
+ * 	  in the prop file
+ *
+ *	- In particular, I want you to test the Turn On / Ignite Saber (Muted)
+ *	  control and the Start / Stop Tracks control
+ *
+ * Discalimer: I don't have a way to test these changes. So, hopefully
+ * these work properly.
+-------------------------------------*/
+
 /* Fett263 Buttons for use with 1, 2 or 3 Button Sabers*
 *1 Button Controls based on SA22C prop
 Includes Gesture Controls, Battle Mode 2.0, Edit Mode, Track Player, Quote/Force Player, Real Clash, Choreography Mode
@@ -4401,7 +4425,11 @@ SaberFett263Buttons() : PropBase() {}
 #endif
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_LONG, MODE_OFF):
+		/*----------------
+			Turn on Muted
+			Twist + Hold PWR
+		 ----------------*/
+      case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
         if (menu_) return true;
         if (SetMute(true)) {
           unmute_on_deactivation_ = true;
@@ -4409,7 +4437,7 @@ SaberFett263Buttons() : PropBase() {}
         }
         return false;
 
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_SHORT, MODE_OFF):
         if (menu_) return true;      
         DoBattery();
         return true;
@@ -4636,7 +4664,10 @@ SaberFett263Buttons() : PropBase() {}
         return true;
         break;
 
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
+		/*---------------
+			START/STOP TACKS
+		  ----------------*/
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
         if (menu_) return true;
 #ifdef ENABLE_AUDIO
         if (track_player_) {
@@ -5213,18 +5244,22 @@ SaberFett263Buttons() : PropBase() {}
         if (menu_) MenuDial(-1);
         return true;
 
-      // Gesture Sleep Toggle
-      case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
-        if (!menu_) {
-          if (!saved_gesture_control.gestureon) {
-            saved_gesture_control.gestureon = true;
-            sound_library_.SayGesturesOn();
-          } else {
-            saved_gesture_control.gestureon = false;
-            sound_library_.SayGesturesOff();
-          }
-	}
-        return true;
+		/*----------------------------
+			GESTURE SLEEP TOGGLE
+			Example of a TWIST + Hold
+		 ----------------------------*/
+      // // Gesture Sleep Toggle
+      // case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
+      //   if (!menu_) {
+      //     if (!saved_gesture_control.gestureon) {
+      //       saved_gesture_control.gestureon = true;
+      //       sound_library_.SayGesturesOn();
+      //     } else {
+      //       saved_gesture_control.gestureon = false;
+      //       sound_library_.SayGesturesOff();
+      //     }
+	  // 	}
+      //   return true;
 
       case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
@@ -5429,6 +5464,9 @@ SaberFett263Buttons() : PropBase() {}
 #endif
         return true;
 
+		/*---------------------
+		 		  TWIST ON
+		 ---------------------*/
 #ifdef FETT263_TWIST_ON_PREON
       case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
         if (!saved_gesture_control.gestureon) return true;
