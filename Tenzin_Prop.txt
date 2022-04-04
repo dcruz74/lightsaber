@@ -1,0 +1,40 @@
+1 Button(PWR) Controls
+
+NOTE: 
+	Click = do short click (so Double Click is two short clicks in quick succession)
+	Long Click = hold button for 1 second and release
+	Hold = hold button down
+	Click and Hold = hold on nth click (so Double Click and Hold would be click twice and hold on second)
+	Click + Long Click = do n clicks then do long click (so Double Click + Long Click would be click twice then do a long click)
+
+Standard Controls While Blade is OFF
+	Turn On / Ignite Saber* = Twist On
+	Turn On / Ignite Saber (Muted) = Hold PWR + Twist
+	//Toggle Gesture Sleep* = Hold PWR + Twist
+	Start / Stop Tracks = Triple Click PWR (pointing straight up)
+	Track Player* = Triple Click PWR (parallel or down)
+		*if only default track exists in current preset, track will "Loop"
+		Turn Right (Stepped (IDK what that means I just want 1 then 2 then 3)) = Next Track
+		Turn Left (Stepped (IDK what that means I just want 3 then 2 then 1)) = Previous Track
+		Click PWR = Play Current Track Once
+		Long Click PWR = Loop Current Track
+		Double Click PWR = Rotate (will play current track and then next sequential tracks)
+		Click + Long Click PWR = Random (will play current track and then randomly select next tracks)
+	Next Preset = Double Click PWR (down, parallel, or up)
+	Previous Preset = Click + Long Click PWR (down, parallel, or up)
+	Scroll Presets (using twist menu) = Long Click PWR
+		Turn Right (Stepped) = Next Preset
+		Turn Left (Stepped) = Previous Preset
+		Click PWR = Select Preset
+		//Increment by 5 = Hold PWR + Turn Right
+		//Increment by 5 = Hold PWR + Turn Left
+		//Long Click PWR = First Preset
+	Volume Menu = Hold PWR + Clash
+		Turn Right (Stepped) = Increase Volume (to max)
+		Turn Left (Stepped) = Decrease Volume (to min)
+		Click PWR = Confirm and Exit
+	Battery Level (IDK what this does but if it says or shows my battery % then I want if not i dont need it) = Quadruple (Four) Click
+	Change Font
+		Next Font = Triple Click + Long Click PWR (parallel or up)
+		Previous Font = Triple Click + Long Click PWR (down)
+		//Copy Preset = Quadruple (Four) Click + Hold PWR
