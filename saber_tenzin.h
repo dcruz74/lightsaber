@@ -1,10 +1,10 @@
 /*------------------------------------------
-  ____  _____    _    ____    __  __ _____ 
- |  _ \| ____|  / \  |  _ \  |  \/  | ____|
- | |_) |  _|   / _ \ | | | | | |\/| |  _|  
- |  _ <| |___ / ___ \| |_| | | |  | | |___ 
- |_| \_\_____/_/   \_\____/  |_|  |_|_____|
-
+ *  ____  _____    _    ____    __  __ _____ 
+ * |  _ \| ____|  / \  |  _ \  |  \/  | ____|
+ * | |_) |  _|   / _ \ | | | | | |\/| |  _|  
+ * |  _ <| |___ / ___ \| |_| | | |  | | |___ 
+ * |_| \_\_____/_/   \_\____/  |_|  |_|_____|
+ *
  *		CHANGES MADE:
  *	- [*] Turn On / Ignite Saber* = Twist On
  *	- [*] Turn On / Ignite Saber (Muted) = Hold PWR + Twist
@@ -17,10 +17,14 @@
  * 	  in the prop file
  *
  *	- In particular, I want you to test the Turn On / Ignite Saber (Muted)
- *	  control and the Start / Stop Tracks control
+ *	  control and the Start / Stop Tracks control to make sure they work
  *
  * Discalimer: I don't have a way to test these changes. So, hopefully
  * these work properly.
+ * 
+ * For fun, to see all the changes I made, run 
+ * 		git diff 2c897 0d652
+ * in Powershell.
 -------------------------------------*/
 
 /* Fett263 Buttons for use with 1, 2 or 3 Button Sabers*
