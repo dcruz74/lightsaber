@@ -4498,7 +4498,10 @@ SaberFett263Buttons() : PropBase() {}
         }
         return false;
 
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_ON):
+		/*-----------------------------
+			Possible Hold to Turn off
+		  ----------------------------*/
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
         if (CancelShowColor()) return true;
         if (menu_) {
           if (menu_type_ == MENU_TOP) {
@@ -4918,8 +4921,10 @@ SaberFett263Buttons() : PropBase() {}
 
 		/*----------------
 			Power button hold turn off
+			- didn't work when this was changed to
+				EVENT_CLICK_MEDIUM
 		 -----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_HELD_MEDIUM, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_HELD_LONG, MODE_ON):
 	if (menu_ || CheckShowColorCC()) return true;
 #ifdef FETT263_SAVE_CHOREOGRAPHY
         if (rehearse_) {
