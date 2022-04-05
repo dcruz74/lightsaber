@@ -4469,7 +4469,8 @@ SaberFett263Buttons() : PropBase() {}
         return true;
 #endif
 
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_ON):
+		// HERE
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
         if (CancelShowColor()) return true;
         if (menu_) {
           MenuUndo();
@@ -4501,7 +4502,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*-----------------------------
 			Possible Hold to Turn off
 		  ----------------------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_ON):
         if (CancelShowColor()) return true;
         if (menu_) {
           if (menu_type_ == MENU_TOP) {
