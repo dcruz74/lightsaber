@@ -4501,11 +4501,13 @@ SaberFett263Buttons() : PropBase() {}
 		/*-----------------------------
 			Possible Hold to Turn off
 		  ----------------------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_SHORT, MODE_ON):
         if (CancelShowColor()) return true;
         if (menu_) {
           if (menu_type_ == MENU_TOP) {
-            sound_library_.SayExit();
+			  //sound_library_.SayExit();
+			  // Saying volume down for debugging purposes
+	        sound_library_.SayVolumeDown();
             menu_ = false;
           } else {
             menu_type_ = MENU_TOP;
@@ -4538,7 +4540,7 @@ SaberFett263Buttons() : PropBase() {}
           saber_off_time_millis_ = millis();
           battle_mode_ = false;
           swing_blast_ = false;
-  }
+		}
         return true;
 
       case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_ON):
