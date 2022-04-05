@@ -10,6 +10,7 @@
  *	- [*] Turn On / Ignite Saber (Muted) = Hold PWR + Twist
  * 	- [*] Start / Stop Tracks = Triple Click PWR (pointing straight up)
  * 	- [*] Battery Level = Quadruple (Four) Click
+ *	- [*] Turn Off / Retract Blade = Long Click PWR
  *		
  *		BATTERY LEVEL:
  *	- Will say the battery percentage, but make sure you define
@@ -19,12 +20,13 @@
  *	- In particular, I want you to test the Turn On / Ignite Saber (Muted)
  *	  control and the Start / Stop Tracks control to make sure they work
  *
+ *	- For a hold button off, use the
+ *			#define FETT263_HOLD_BUTTON_FF
+ *	  in the config file
+ *
  * Discalimer: I don't have a way to test these changes. So, hopefully
  * these work properly.
  * 
- * For fun, to see all the changes I made, run 
- * 		git diff 2c897 0d652
- * in Powershell.
 -------------------------------------*/
 
 /* Fett263 Buttons for use with 1, 2 or 3 Button Sabers*
@@ -4914,7 +4916,10 @@ SaberFett263Buttons() : PropBase() {}
         }
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_HELD_LONG, MODE_ON):
+		/*----------------
+			Power button hold turn off
+		 -----------------*/
+      case EVENTID(BUTTON_POWER, EVENT_HELD_MEDIUM, MODE_ON):
 	if (menu_ || CheckShowColorCC()) return true;
 #ifdef FETT263_SAVE_CHOREOGRAPHY
         if (rehearse_) {
