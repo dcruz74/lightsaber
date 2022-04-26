@@ -12,6 +12,17 @@
  * 	- [*] Battery Level = Quadruple (Four) Click
  *	- [*] Turn Off / Retract Blade = Long Click PWR
  *		
+		TRACK PLAYER:
+	- [X] Start / Stop Tracks = Triple Click PWR (pointing straight up)
+   	- [X] Track Player* = Triple Click PWR (parallel or down)
+	- [X] Click + Long Click PWR = Random (will play current track and then randomly select next tracks)
+	- [X] Double Click PWR = Rotate (will play current track and then next sequential tracks)
+
+		CHANGE FONT:
+	- [X] Next Font = Double Click + Long Click PWR (parallel or up)
+   	- [X] Previous Font = Double Click + Long Click PWR (down)
+   	- [X] //Copy Preset = Quadruple (Four) Click + Hold PWR (I do not want this)
+
  *		BATTERY LEVEL:
  *	- Will say the battery percentage, but make sure you define
  * 			   #define FETT263_SAY_BATTERY_PERCENT
@@ -4386,6 +4397,9 @@ SaberFett263Buttons() : PropBase() {}
           }
           return true;
 
+		  /*-----------------
+			SCROLL PRESETS. ENTER PRESET
+			-----------------*/
       case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
         if (menu_) {
           if (menu_type_ == MENU_PRESET) {
@@ -4403,7 +4417,10 @@ SaberFett263Buttons() : PropBase() {}
         }
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
+		/*-----------
+			RANDOM FOR ONE BUTTON
+		  --------------*/
+      case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_MEDIUM, MODE_OFF):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
@@ -4622,15 +4639,22 @@ SaberFett263Buttons() : PropBase() {}
         hybrid_font.PlayCommon(&SFX_ccchange);
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_OFF):
+		
+		/*-----------------
+			NEXT/PREVIOUS FONT 
+		  ----------------*/
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_LONG, MODE_OFF):
-        if (menu_) return true;
-        CopyPreset(true);
-        return true;
+		/*----------------
+			COPY PRESET REMOVED
+		  ---------------*/
+      // case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_LONG, MODE_OFF):
+      //   if (menu_) return true;
+      //   CopyPreset(true);
+      //   return true;
 
       case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_POWER):
         if (menu_ || CheckShowColorCC()) return true;
@@ -4677,7 +4701,8 @@ SaberFett263Buttons() : PropBase() {}
         break;
 
 		/*---------------
-			START/STOP TACKS
+			START/STOP TRACKS
+			AND TRACK PLAYER
 		  ----------------*/
       case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
         if (menu_) return true;
@@ -4687,10 +4712,13 @@ SaberFett263Buttons() : PropBase() {}
           track_mode_ = PLAYBACK_OFF;
           return true;
         } else {
-          if (fusor.angle1() > M_PI / 3) {
+			// Notice: this part executes if it is pointed straight up
+			if (fusor.angle1() > M_PI / 3) { // Start/Stop Tracks
             StartOrStopTrack();
             return true;
-          } else {
+			}
+			// This is executed when blade is not pointed straight up
+			else {						 // Track Player
             StartTrackPlayer();
             return true;
           }
@@ -5304,7 +5332,10 @@ SaberFett263Buttons() : PropBase() {}
         if (menu_) MenuDialIncrement(-1);
         return true;
 
-      case EVENTID(BUTTON_NONE, EVENT_TWIST_RIGHT, MODE_OFF | BUTTON_POWER):
+		/*--------------
+			ROTATE TRACK
+		  --------*/
+      case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
           return true;
@@ -5321,6 +5352,9 @@ SaberFett263Buttons() : PropBase() {}
         }
         return false;
 
+		/*-------------
+			LOOP CURRENT TRACK
+		  -----------*/
       case EVENTID(BUTTON_NONE, EVENT_TWIST_LEFT, MODE_OFF | BUTTON_POWER):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
