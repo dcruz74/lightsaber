@@ -4933,7 +4933,11 @@ SaberFett263Buttons() : PropBase() {}
         hybrid_font.PlayCommon(&SFX_ccchange);
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_CLICK_LONG, MODE_OFF | BUTTON_AUX):
+		/*------------
+			Only place where a single hold changes a font.
+			Why is the two button one being executed?
+		  --------------*/
+      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
