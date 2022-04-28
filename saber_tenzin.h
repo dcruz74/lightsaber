@@ -4637,6 +4637,7 @@ SaberFett263Buttons() : PropBase() {}
         }
         return true;
 
+		// Next/Previous font?
       case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_LONG, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
         ChangeStyleNumberAllBlades(fusor.angle1() < - M_PI / 3 ? -1 : 1);
@@ -4647,7 +4648,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*-----------------
 			NEXT/PREVIOUS FONT 
 		  ----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_MEDIUM, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
