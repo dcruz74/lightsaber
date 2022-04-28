@@ -4419,8 +4419,9 @@ SaberFett263Buttons() : PropBase() {}
 
 		/*-----------
 			RANDOM FOR ONE BUTTON
+			// BROKEN
 		  --------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_MEDIUM, MODE_OFF):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
@@ -4460,6 +4461,9 @@ SaberFett263Buttons() : PropBase() {}
         }
         return false;
 
+		/*-------------
+			BATTERY LEVEL
+		  ------------*/
       case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_SHORT, MODE_OFF):
         if (menu_) return true;      
         DoBattery();
@@ -4633,7 +4637,7 @@ SaberFett263Buttons() : PropBase() {}
         }
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_LONG, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
         ChangeStyleNumberAllBlades(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         hybrid_font.PlayCommon(&SFX_ccchange);
