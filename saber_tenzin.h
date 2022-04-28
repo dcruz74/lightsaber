@@ -4420,7 +4420,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*-----------
 			RANDOM FOR ONE BUTTON
 		  --------------*/
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_MEDIUM, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
