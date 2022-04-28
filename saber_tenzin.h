@@ -4638,7 +4638,8 @@ SaberFett263Buttons() : PropBase() {}
         return true;
 
 		// Next/Previous font?
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_LONG, MODE_ON):
+		// This might be the one that registers
+      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
         ChangeStyleNumberAllBlades(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         hybrid_font.PlayCommon(&SFX_ccchange);
