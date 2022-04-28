@@ -4643,7 +4643,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*-----------------
 			NEXT/PREVIOUS FONT 
 		  ----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_MEDIUM, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
@@ -5354,7 +5354,7 @@ SaberFett263Buttons() : PropBase() {}
 
 		/*-------------
 			LOOP CURRENT TRACK
-		  -----------*/
+		  ---------*/
       case EVENTID(BUTTON_NONE, EVENT_TWIST_LEFT, MODE_OFF | BUTTON_POWER):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
