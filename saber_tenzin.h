@@ -4639,7 +4639,7 @@ SaberFett263Buttons() : PropBase() {}
 
 		// Next/Previous font?
 		// This might be the one that registers
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
         ChangeStyleNumberAllBlades(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         hybrid_font.PlayCommon(&SFX_ccchange);
@@ -4650,7 +4650,7 @@ SaberFett263Buttons() : PropBase() {}
 			CHANGE FONT
 			NEXT/PREVIOUS FONT 
 		  ----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
@@ -4937,7 +4937,7 @@ SaberFett263Buttons() : PropBase() {}
 			Only place where a single hold changes a font.
 			Why is the two button one being executed?
 		  --------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
