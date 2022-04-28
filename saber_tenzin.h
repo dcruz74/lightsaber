@@ -4646,9 +4646,10 @@ SaberFett263Buttons() : PropBase() {}
 
 		
 		/*-----------------
+			CHANGE FONT
 			NEXT/PREVIOUS FONT 
 		  ----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         ChangeFont(fusor.angle1() < - M_PI / 3 ? -1 : 1);
         return true;
