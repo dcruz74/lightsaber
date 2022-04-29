@@ -4380,6 +4380,7 @@ SaberFett263Buttons() : PropBase() {}
 
       case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
           if (menu_) {
+			  DoBattery();
             MenuChoice();
             return true;
 #ifdef FETT263_MOTION_WAKE_POWER_BUTTON
