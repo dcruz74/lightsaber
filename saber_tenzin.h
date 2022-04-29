@@ -4380,7 +4380,6 @@ SaberFett263Buttons() : PropBase() {}
 
       case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
           if (menu_) {
-			  DoBattery();
             MenuChoice();
             return true;
 #ifdef FETT263_MOTION_WAKE_POWER_BUTTON
@@ -4423,7 +4422,7 @@ SaberFett263Buttons() : PropBase() {}
 			RANDOM FOR ONE BUTTON
 			// BROKEN
 		  --------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_LONG, MODE_OFF):
+      case EVENTID(BUTTON_NONE, EVENT_TWIST_RIGHT, MODE_OFF | BUTTON_POWER):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
@@ -5352,7 +5351,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*--------------
 			ROTATE TRACK
 		  --------*/
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_LONG, MODE_OFF):
+      case EVENTID(BUTTON_NONE, EVENT_TWIST_LEFT, MODE_OFF | BUTTON_POWER):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
           return true;
