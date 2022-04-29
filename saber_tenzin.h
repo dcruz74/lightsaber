@@ -15,8 +15,9 @@
 		TRACK PLAYER:
 	- [X] Start / Stop Tracks = Triple Click PWR (pointing straight up)
    	- [X] Track Player* = Triple Click PWR (parallel or down)
-	- [X] Click + Long Click PWR = Random (will play current track and then randomly select next tracks)
-	- [X] Double Click PWR = Rotate (will play current track and then next sequential tracks)
+	- [X] Long Click PWR = Loop Current Track
+	- [X] Hold PWR + Clash = Random (will play current track and then randomly select next tracks)
+	- [X] Hold PWR + Twist = Rotate (will play current track and then next sequential tracks)
 
 		CHANGE FONT:
 	- [X] Next Font = Double Click + Long Click PWR (parallel or up)
@@ -4421,7 +4422,7 @@ SaberFett263Buttons() : PropBase() {}
 			RANDOM FOR ONE BUTTON
 			// BROKEN
 		  --------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
+      case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
@@ -4735,6 +4736,9 @@ SaberFett263Buttons() : PropBase() {}
 #endif
         return true;
 
+		/*----------------
+			Possible confict with Random bind
+		  ----------*/
       case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
         if (!menu_) {
           StartMenu(MENU_VOLUME);
@@ -5346,7 +5350,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*--------------
 			ROTATE TRACK
 		  --------*/
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
+      case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
           return true;
@@ -5366,7 +5370,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*-------------
 			LOOP CURRENT TRACK
 		  ---------*/
-      case EVENTID(BUTTON_NONE, EVENT_TWIST_LEFT, MODE_OFF | BUTTON_POWER):
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
           return true;
