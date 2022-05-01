@@ -4478,7 +4478,8 @@ SaberFett263Buttons() : PropBase() {}
           unmute_on_deactivation_ = true;
           FastOn();
         }
-        return false;
+        // return false;
+		return true;
 
 		/*-------------
 			BATTERY LEVEL
