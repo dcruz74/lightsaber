@@ -4417,7 +4417,7 @@ SaberFett263Buttons() : PropBase() {}
 		  /*-----------------
 			SCROLL PRESETS. ENTER PRESET
 			-----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_PRESSED, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_HELD_LONG, MODE_OFF):
         if (menu_) {
           if (menu_type_ == MENU_PRESET) {
             first_preset();
@@ -4639,7 +4639,6 @@ SaberFett263Buttons() : PropBase() {}
         if (menu_ || CheckShowColorCC()) return true;
         if (track_player_) {
           StopTrackPlayer();
-          return true;
         }
 
 		return true;
