@@ -4417,7 +4417,7 @@ SaberFett263Buttons() : PropBase() {}
 		  /*-----------------
 			SCROLL PRESETS. ENTER PRESET
 			-----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_HELD_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
         if (menu_) {
           if (menu_type_ == MENU_PRESET) {
             first_preset();
