@@ -24,6 +24,22 @@
    	- [X] Previous Font = Double Click + Long Click PWR (down)
    	- [X] //Copy Preset = Quadruple (Four) Click + Hold PWR (I do not want this)
 
+
+///////////////NEWEST CHANGES///////////////
+		PRESETS:
+	- [X] Next Preset = Double Click PWR (parallel, or up)
+   	- [X] Previous Preset = Double Click PWR (down)
+   	- [X] Scroll Presets (using twist menu) = Double Click PWR (Parallel)
+
+		WHEN ON:
+	- [X] Blast Effect = Click PWR
+	- [X] Force/Quote = Hold PWR
+	- [X] Stop Track* - Triple Click PWR
+	- [X] Color Change = 4 Clicks PWR (parallel)
+	- [X] Power Save* = Quadruple (Four) Click PWR (down or up)
+	- [X] Enter/Exit Battle Mode = Quadruple (Four) Click and Hold PWR
+/////////////////////////////////////////////
+
  *		BATTERY LEVEL:
  *	- Will say the battery percentage, but make sure you define
  * 			   #define FETT263_SAY_BATTERY_PERCENT
@@ -4401,7 +4417,7 @@ SaberFett263Buttons() : PropBase() {}
 		  /*-----------------
 			SCROLL PRESETS. ENTER PRESET
 			-----------------*/
-      case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
+      case EVENTID(BUTTON_POWER, EVENT_SECOND_PRESSED, MODE_OFF):
         if (menu_) {
           if (menu_type_ == MENU_PRESET) {
             first_preset();
@@ -4410,9 +4426,11 @@ SaberFett263Buttons() : PropBase() {}
           }
           MenuUndo();
         } else {
-          if (fusor.angle1() < - M_PI / 3) {
+			if (fusor.angle1() < - M_PI / 3) {
+				// DOWN
             previous_preset();
           } else {
+				// UP
             next_preset();
           }        
         }
@@ -4492,6 +4510,10 @@ SaberFett263Buttons() : PropBase() {}
 #endif
 
 		// HERE
+
+		/*-------------------
+			FORCE QUOTE
+		  --------------------*/
       case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
         if (CancelShowColor()) return true;
         if (menu_) {
@@ -4566,7 +4588,7 @@ SaberFett263Buttons() : PropBase() {}
 		}
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_ON):
+      case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_MEDIUM, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
 #ifdef FETT263_SAVE_CHOREOGRAPHY
         if (rehearse_) {
@@ -4608,25 +4630,36 @@ SaberFett263Buttons() : PropBase() {}
         SaberBase::DoBlast();
         return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
+		// REMOVED MORE THAN 1 BLAST BUTTON
+
+		/*------------------
+			STOP TRACK ON
+		  -----------------*/
+      case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
         if (track_player_) {
           StopTrackPlayer();
           return true;
         }
-        ToggleBattleModeMultiBlast();
-        SaberBase::DoBlast();
-        return true;
 
-      case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
-        if (menu_ || CheckShowColorCC()) return true;
-        ToggleBattleModeMultiBlast();
-        SaberBase::DoBlast();
-        return true;
+		return true;
+      //   ToggleBattleModeMultiBlast();
+      //   SaberBase::DoBlast();
+      //   return true;
 
+      // case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
+      //   if (menu_ || CheckShowColorCC()) return true;
+      //   ToggleBattleModeMultiBlast();
+      //   SaberBase::DoBlast();
+      //   return true;
+
+		
+		/*----------------
+			COLOR CHANGE TOGGLE
+		  ---------------*/
       case EVENTID(BUTTON_POWER, EVENT_FOURTH_CLICK_SHORT, MODE_ON):
         if (menu_ || CheckShowColorCC()) return true;
-        if (fusor.angle1() > M_PI / 3) {
+        if (fusor.angle1() > M_PI / 3 || fusor.angle1() < -1 * M_PI/3) {
           SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
         } else {
 #ifndef DISABLE_COLOR_CHANGE
