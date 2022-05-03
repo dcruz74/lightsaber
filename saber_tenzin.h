@@ -4449,7 +4449,7 @@ SaberFett263Buttons() : PropBase() {}
 			RANDOM FOR ONE BUTTON
 			// BROKEN
 		  --------------*/
-      case EVENTID(BUTTON_NONE, EVENT_TWIST_RIGHT, MODE_OFF | BUTTON_POWER):
+      case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
         if (menu_ && menu_type_ == MENU_TRACK_PLAYER) {
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
@@ -4776,17 +4776,18 @@ SaberFett263Buttons() : PropBase() {}
 		/*----------------
 			Possible confict with Random bind
 			VOLUME MENU
+			CHANGE THIS BIND
 		  ----------*/
-      case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
-        if (!menu_) {
-          StartMenu(MENU_VOLUME);
-          if (SFX_vmbegin) {
-            sound_library_.SayEnterVolumeMenu();
-          } else {
-            sound_library_.SayEditVolume();
-          }
-        }
-        return true;
+      // case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
+      //   if (!menu_) {
+      //     StartMenu(MENU_VOLUME);
+      //     if (SFX_vmbegin) {
+      //       sound_library_.SayEnterVolumeMenu();
+      //     } else {
+      //       sound_library_.SayEditVolume();
+      //     }
+      //   }
+      //   return true;
 
 #else
 // 2 Button Controls
@@ -5391,7 +5392,7 @@ SaberFett263Buttons() : PropBase() {}
 		/*--------------
 			ROTATE TRACK
 		  --------*/
-      case EVENTID(BUTTON_NONE, EVENT_TWIST_LEFT, MODE_OFF | BUTTON_POWER):
+      case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
         if (wav_player && wav_player->isPlaying()) {
           current_menu_angle_ = fusor.angle2();
           return true;
