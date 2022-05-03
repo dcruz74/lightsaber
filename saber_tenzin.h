@@ -4418,7 +4418,8 @@ SaberFett263Buttons() : PropBase() {}
 			SCROLL PRESETS. ENTER PRESET
 			-----------------*/
       case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
-        if (menu_) {
+	  
+	  if (menu_) {
           if (menu_type_ == MENU_PRESET) {
             first_preset();
             MenuExit();
@@ -4429,10 +4430,18 @@ SaberFett263Buttons() : PropBase() {}
 			if (fusor.angle1() < - M_PI / 3) {
 				// DOWN
             previous_preset();
-          } else {
+			} else if(fusor.angle1() > M_PI / 3) {
 				// UP
             next_preset();
-          }        
+          }
+			else{
+				// PARALLEL
+			   if (!menu_) {
+				  StartMenu(MENU_PRESET);
+				  sound_library_.SaySelectPreset();
+				  return true;
+      			}
+			}
         }
         return true;
 
@@ -4445,11 +4454,6 @@ SaberFett263Buttons() : PropBase() {}
           track_mode_ = PLAYBACK_RANDOM;
           sound_library_.SayRandom();
           MenuExit();
-          return true;
-        }
-        if (!menu_) {
-          StartMenu(MENU_PRESET);
-          sound_library_.SaySelectPreset();
           return true;
         }
         return true;
@@ -4825,6 +4829,9 @@ SaberFett263Buttons() : PropBase() {}
         }
         return true;
 
+		/*---------------- 
+			SCROLL MENU PRESET
+		  --------------*/
       case EVENTID(BUTTON_AUX, EVENT_CLICK_LONG, MODE_OFF):
         if (menu_) return true;
         StartMenu(MENU_PRESET);
